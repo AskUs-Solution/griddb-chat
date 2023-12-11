@@ -69,7 +69,8 @@
       <button>Send</button>
     </form>
     <!--Client side-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
     <script>
       const form = document.querySelector("form");
       const input = document.querySelector(".input");
@@ -82,7 +83,7 @@
         function (event) {
           event.preventDefault();
 
-          addMessage(username + ": " + input.value);
+          // addMessage(username + ": " + input.value);
 
           socket.emit("chat_message", {
             username: username,
@@ -105,6 +106,9 @@
 
       socket.on("user_leave", function (data) {
         addMessage(data + " Has Left");
+      });
+      socket.on("disconnect", function () {
+        addMessage("You Have Disconnected");
       });
 
       addMessage("You Have Joined As " + username);

@@ -1,5 +1,5 @@
 const express = require("express");
-const socketIo = require("socket.io");
+const socketio = require("socket.io");
 const http = require("http");
 const db = require("./db");
 const app = express();
@@ -8,33 +8,21 @@ const griddb = require("griddb_node");
 const PORT = 3000;
 const HOST = "0.0.0.0";
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = socketio(server);
 const factory = griddb.StoreFactory.getInstance();
 const store = factory.getStore({
-  // host: "127.0.0.1",
-  // port: 10010,
   notificationMember: "127.0.0.1:10001",
   clusterName: "defaultCluster",
   username: "admin",
   password: "admin",
 });
 
-const colConInfo = new griddb.ContainerInfo({
-  name: "Person",
-  columnInfoList: [
-    ["name", griddb.Type.STRING],
-    ["age", griddb.Type.INTEGER],
-  ],
-  type: griddb.ContainerType.COLLECTION,
-  rowKey: true,
-});
-
 var timeConInfo = new griddb.ContainerInfo({
-  name: "HeartRate",
+  name: "Chat",
   columnInfoList: [
     ["timestamp", griddb.Type.TIMESTAMP],
-    ["heartRate", griddb.Type.INTEGER],
-    ["activity", griddb.Type.STRING],
+    ["username", griddb.Type.STRING],
+    ["message", griddb.Type.STRING],
   ],
   type: griddb.ContainerType.TIME_SERIES,
   rowKey: true,
@@ -45,7 +33,7 @@ store
   .putContainer(timeConInfo, false)
   .then((ts) => {
     time_series = ts;
-    return ts.put([new Date(), 60, "resting"]);
+    return ts.put([new Date(), "Nomi", "resting"]);
   })
   .then(() => {
     query = time_series.query(
@@ -59,9 +47,9 @@ store
       console.log(
         "Time =",
         row[0],
-        "Heart Rate =",
+        "Username =",
         row[1].toString(),
-        "Activity =",
+        "Message =",
         row[2]
       );
     }
@@ -86,7 +74,7 @@ async function handleChatMessage(data) {
       .putContainer(timeConInfo, false)
       .then((ts) => {
         time_series = ts;
-        return ts.put([new Date(), 70, data.txt]);
+        return ts.put([new Date(), data.username, data.message]);
       })
       .then(() => {
         query = time_series.query(
@@ -132,7 +120,7 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("A user connected");
+  console.log("A user connected: ", socket.id);
 
   socket.on("user_join", (username) => {
     io.emit("user_join", username);
@@ -146,10 +134,6 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("User disconnected");
   });
-
-  getLastNChatMessages(10).then((messages) => {
-    console.log("Last 10 chat messages:", messages);
-  });
 });
 
 app.get("/", (req, res) => {
@@ -157,15 +141,15 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/put", async (req, res) => {
-  const { user, txt } = req.query;
+  const { username, message } = req.query;
   let data = {
-    user,
-    txt,
+    username,
+    message,
   };
   handleChatMessage(data);
-  // const putRow = await db.putRow(value);
+
   res.send("done");
 });
 
-app.listen(PORT, HOST);
+server.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
