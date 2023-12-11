@@ -17,6 +17,7 @@ const store = factory.getStore({
   password: "admin",
 });
 
+// Schema
 var timeConInfo = new griddb.ContainerInfo({
   name: "Chat",
   columnInfoList: [
