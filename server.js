@@ -11,11 +11,24 @@ const server = http.createServer(app);
 const io = socketIo(server);
 const factory = griddb.StoreFactory.getInstance();
 const store = factory.getStore({
-  notificationMember: "127.0.0.1:10040",
+  // host: "127.0.0.1",
+  // port: 10010,
+  notificationMember: "127.0.0.1:10001",
   clusterName: "defaultCluster",
   username: "admin",
   password: "admin",
 });
+
+const colConInfo = new griddb.ContainerInfo({
+  name: "Person",
+  columnInfoList: [
+    ["name", griddb.Type.STRING],
+    ["age", griddb.Type.INTEGER],
+  ],
+  type: griddb.ContainerType.COLLECTION,
+  rowKey: true,
+});
+
 var timeConInfo = new griddb.ContainerInfo({
   name: "HeartRate",
   columnInfoList: [
@@ -26,16 +39,7 @@ var timeConInfo = new griddb.ContainerInfo({
   type: griddb.ContainerType.TIME_SERIES,
   rowKey: true,
 });
-var timeConInfo = new griddb.ContainerInfo({
-  name: "ChatMessages",
-  columnInfoList: [
-    ["timestamp", griddb.Type.TIMESTAMP],
-    ["user", griddb.Type.INTEGER],
-    ["message", griddb.Type.STRING],
-  ],
-  type: griddb.ContainerType.TIME_SERIES,
-  rowKey: true,
-});
+
 let time_series;
 store
   .putContainer(timeConInfo, false)
@@ -73,6 +77,7 @@ store
       console.log(err);
     }
   });
+
 // Function to handle the "chat_message" event and store the message in GridDB
 async function handleChatMessage(data) {
   try {
@@ -81,7 +86,7 @@ async function handleChatMessage(data) {
       .putContainer(timeConInfo, false)
       .then((ts) => {
         time_series = ts;
-        return ts.put([new Date(), data.user, data.txt]);
+        return ts.put([new Date(), 70, data.txt]);
       })
       .then(() => {
         query = time_series.query(
