@@ -32,7 +32,7 @@ $ export GS_LOG=/var/lib/gridstore/log/
 
 
 # Then start your node
-
+# username/password - admin is default user and password
 $ gs_startnode -u admin/admin
 
 # Join Cluster
