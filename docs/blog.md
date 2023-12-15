@@ -1,6 +1,6 @@
 ﻿## **How to build a Real-time Chat Application with Node.js and GridDB**
 
-This tutorial will assist you in building a real-time chat application using Node.js and GridDB. It also explores using technologies like Express and Socket.io to ensure smooth connections.![](https://lh7-us.googleusercontent.com/RSNssvtbSmFI1Z3JBk4f_2U6qQvWaK0t1CqyHTQejBGuG1M3OmJIq37j06QMG3GSYO9o_iQ3ekQ9XJ2vf5Bdx23PsBRdgIooIuwW8rVB3WDBS5OlaiYoO_NBpfde24C1nNyk3OayeUV9ReOP-DJ5GSE)
+This tutorial will assist you in building a real-time chat application using Node.js and GridDB. It also explores using technologies like Express and Socket.io to ensure smooth connections.![](https://drive.google.com/uc?export=view&id=1tuxRlkrA9WqaEaDBNQsL-zGkJVcU-1xW)
 
 ## Introduction:
 
@@ -10,7 +10,7 @@ Unlike traditional channels like email or forums, real-time chat platforms guara
 
 **Understanding the Technologies**
 
-![](https://lh7-us.googleusercontent.com/7oBF3xoReIfnFBB1UrpwzuwpgjVkTNyS5FxxI7ZV6abmBO7epRDU9lXXM0WEnJo9Jv-W3VA2ZKfvs4c9s7Tk1g0FcD0hmM5ShY3ZxOKQOFUn66x-84r2H_3Lrzm-aFLKNW4FCZ9916B_umcJYDpgLqo)
+![](https://drive.google.com/uc?export=view&id=14eOM6_-nxub982K67PJ79kqfb13JzPKA)
 
 **NodeJS:**
 
@@ -35,7 +35,7 @@ A library called Socket.io is intended for real-time, event-driven web applicati
 
 ## Step-by-Step configuration:
 
-![](https://lh7-us.googleusercontent.com/rNPZVCMoOFu3QHz_t-xNrfwh0ahlOiWVT5MXR46JNNSS5QFVBAQaCVks5TeYZUb1psshCmV0ECP4DR3eFV-cMts7KfnIsqSFZR2uugWurpFMOJqa6cVFUfVjIpRQTKEoW2Q92UaJ74sALGryLbZ4heQ)
+![](https://drive.google.com/uc?export=view&id=1DDO1OyxaS21K85b5WnujP2EEtFyiT6qC)
 
 Create a folder by using the command:
 
@@ -57,7 +57,7 @@ npm init -y
 
 The output will look like this:
 
-![](https://lh7-us.googleusercontent.com/g6XiR8gHfOzBHDmalX4BVOqfw-LgldNucu945znP7fZa5nK2lUNQ8xbDIDl_InoKquq5iyagCS6HrAyPhPVweZF342KiDPXmmoU_HcHiC_FZBb2gzDKNycQzOrRd-O3deLuVEcgVFygbQgD6qpZTNDM)
+![](https://drive.google.com/uc?export=view&id=1j5RZf8r2vkISqlu7Rt31CobtgL1G6krN)
 
 To use the nvm 10.x, use the following command:
 
@@ -79,7 +79,7 @@ npm install -save socket.io
 
 ## Setting Up GridDB:
 
-![](https://lh7-us.googleusercontent.com/jaHrehmDqRJwa_AVUXmdGZF4GGMLPa4JHhtE2NxH6bMA72ZFFjavtRUWlvXk-yE44SfulVvr0BcTdFFRxK8lgrOs04K7Zv4xxm3_I7w7favdm6jHxBA96_ZjRUkLo4adlrmbvkXMqSm2m1aNCGIT70E)
+![](https://drive.google.com/uc?export=view&id=1_zOCAtzyIUjews2xtiFz-ipyrLV_VGU5)
 
 Run the following commands on the system’s terminal.
 
@@ -108,7 +108,7 @@ This gives you the gsadm user access to modify the configuration files.
 
 **Output:**
 
-![](https://lh7-us.googleusercontent.com/u9nebG_EUP7EGyPQtVobP2k1Nz9qPjrT3KwUiUc-_OBAaMpxlYClBtGRwf5VHmw9pG4noszcYSIk4GYAIM3Hc9LQR6nhVJlKHyKys5LQrP7GyarPOfJ4a3JXoyt6Jrrf6dTjM5qmnqYiF-y6L2Guu7A)
+![](https://drive.google.com/uc?export=view&id=1C9Je_9QAfLmvgfaF6SCzRUP7AeEq7xqN)
 
 Change the default password of admin by using the command:
 
@@ -134,7 +134,7 @@ gs_stat -u admin/admin
 
 **Output:**
 
-![](https://lh7-us.googleusercontent.com/auvzuDVM0gxRFZdCOK7yA3PVyd_zBVSCrcukeUpyuOx_EGhDiujpY_iLOvQdMdTNg8YvzHsUXZE0XTEmv3djv9Xc0jKYmxTfkVql5m6-rvC0HmbnZ5yw-mnD7dcnMiU_h_j-JxyDw8Mfinr5Nqr7-rc)
+![](https://drive.google.com/uc?export=view&id=1bdCCLt1zSAkTd1vaWRFNBWS5J_irQlUW)
 
 Then, create a file (in Visual Studio Code) called server.js that Node will use to function as the server.
 
@@ -312,7 +312,7 @@ The code creates a real-time chat server using Express, Socket.io, and GridDB. I
 
 Let’s create an 'index.html' file by clicking 'New File.'
 
-![](https://lh7-us.googleusercontent.com/czAG-MiGPIprICnmpxi5PE_hw7LfR4FQI7jIZ5hoDtEAWpdzsuwebviHd6wfYNhe9r4vy7bQd78CaQ-0tg-YM5xcC8anVwZl7o31zNxj1HnERTrafFbXq110gSRaFg_JsNNxItgGxAxXWrAtBK5Yo-c)
+![](https://github.com/AskUs-Solution/griddb-chat/blob/main/docs/img1.PNG)
 
 **Add the following code to it:**
 
@@ -468,11 +468,11 @@ node server.js
 
 **Output:**
 
-![](https://lh7-us.googleusercontent.com/3ZMYkryduqf9UNsupZz2eoefDTslNbSlzhpowqfUhBWeGhPB1p_e67CcABfQAUJEhobRuaql14DvZRvzckt_RkLQ-62dnzrxk1hfhFwUHBZk4GW9kHah7-NDgM1ZcD5Mrn10AsIJZ5BpA9kOtbQvECo)
+![](https://drive.google.com/uc?export=view&id=1bi9nYpJXNeoWJ0a9Q2_NxjuwEXXMBnYG)
 
-![](https://lh7-us.googleusercontent.com/uBwdRgDqDGjjfqGVhtGaMzib6rxl5N6DTWaMTE_bkDuVBIfsvltMrVcEM24v8uOHHRAex70m2ANWhgf9oGMD_LhUHgc39_cyxUmd-LthuaV1JLo4sHfCsP4BLNMcc2iA_6hZ89VPcXAH3PU1c1hRIU0)
+![](https://drive.google.com/uc?export=view&id=113H12Nr5a4VM8lmzNGilwc0qqJqOtr02)
 
-![](https://lh7-us.googleusercontent.com/kZsVI37_psHoUX4PlazUPPcqU49tdc9l4-bOtg8oED7zY2TEiB0vF4P-OWLrVM_E6zAXbobcJE_gKru9IwlFrlYzrdWaJXbSv6D8VeVAVlkNNqhsP8n2j-7FFMUya4wIyQVcbL5gZ5cmXUkTJa5Vp1Y)
+![](https://drive.google.com/uc?export=view&id=16WbXb3fB01SARTCIBSsVTgxTbG2afK3G)
 
 ![](https://lh7-us.googleusercontent.com/aY3sOa8A70yPscVtDTCLaNV3GZaADarXx_uAc-8aUXZWpPZfwdAkyqXd3KR838HSjxQHoHaWdwk9un1aPvM2wYBOuejVlk2-lQzrTyTmO1hV4BK01m46eA5DFZbcXe9B0kOFqiWL0T_o-Dknaiimkg4)
 
