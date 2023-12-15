@@ -312,7 +312,7 @@ The code creates a real-time chat server using Express, Socket.io, and GridDB. I
 
 Let’s create an 'index.html' file by clicking 'New File.'
 
-![](https://github.com/AskUs-Solution/griddb-chat/blob/main/docs/img1.PNG)
+<!-- ![](https://github.com/AskUs-Solution/griddb-chat/blob/main/docs/img1.PNG) -->
 
 **Add the following code to it:**
 
