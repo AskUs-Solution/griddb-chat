@@ -57,7 +57,7 @@ npm init -y
 
 The output will look like this:
 
-![](https://drive.google.com/uc?export=view&id=1j5RZf8r2vkISqlu7Rt31CobtgL1G6krN)
+![](https://drive.google.com/uc?export=view&id=1rZXcTRv8fdiwVUeepr3V7HBMb5oT2Rvz)
 
 To use the nvm 10.x, use the following command:
 
