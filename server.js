@@ -1,7 +1,6 @@
 const express = require("express");
 const socketio = require("socket.io");
 const http = require("http");
-const db = require("./db");
 const app = express();
 const griddb = require("griddb_node");
 
