@@ -79,7 +79,7 @@ npm install -save socket.io
 
 ## Setting Up GridDB:
 
-![](https://drive.google.com/uc?export=view&id=1_zOCAtzyIUjews2xtiFz-ipyrLV_VGU5)
+<!-- ![](https://drive.google.com/uc?export=view&id=1_zOCAtzyIUjews2xtiFz-ipyrLV_VGU5) -->
 
 Run the following commands on the system’s terminal.
 
@@ -101,14 +101,14 @@ sudo -su gsadm
 ```
 
 ```bash
-vim conf/gs_cluster.json
+vim /var/lib/gridstore/conf/gs_cluster.json
 ```
 
 This gives you the gsadm user access to modify the configuration files.
 
 **Output:**
 
-![](https://drive.google.com/uc?export=view&id=1C9Je_9QAfLmvgfaF6SCzRUP7AeEq7xqN)
+![](https://drive.google.com/uc?export=view&id=104hUUjezRzV8d7KEcjyzxir_dVT59ijT)
 
 Change the default password of admin by using the command:
 
@@ -125,7 +125,7 @@ gs_startnode -u username/password
 gs_joincluster -u admin/admin
 ```
 
-![](https://lh7-us.googleusercontent.com/u9nebG_EUP7EGyPQtVobP2k1Nz9qPjrT3KwUiUc-_OBAaMpxlYClBtGRwf5VHmw9pG4noszcYSIk4GYAIM3Hc9LQR6nhVJlKHyKys5LQrP7GyarPOfJ4a3JXoyt6Jrrf6dTjM5qmnqYiF-y6L2Guu7A)
+![](https://drive.google.com/uc?export=view&id=1C9Je_9QAfLmvgfaF6SCzRUP7AeEq7xqN)
 You can verify the status of GridDB by using the command:
 
 ```bash
@@ -473,8 +473,6 @@ node server.js
 ![](https://drive.google.com/uc?export=view&id=113H12Nr5a4VM8lmzNGilwc0qqJqOtr02)
 
 ![](https://drive.google.com/uc?export=view&id=16WbXb3fB01SARTCIBSsVTgxTbG2afK3G)
-
-![](https://lh7-us.googleusercontent.com/aY3sOa8A70yPscVtDTCLaNV3GZaADarXx_uAc-8aUXZWpPZfwdAkyqXd3KR838HSjxQHoHaWdwk9un1aPvM2wYBOuejVlk2-lQzrTyTmO1hV4BK01m46eA5DFZbcXe9B0kOFqiWL0T_o-Dknaiimkg4)
 
 ## Conclusion:
 
