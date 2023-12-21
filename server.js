@@ -2,7 +2,7 @@ const express = require("express");
 const socketio = require("socket.io");
 const http = require("http");
 const app = express();
-const griddb = require("griddb_node");
+const griddb = require("griddb-node-api");
 
 const PORT = 3000;
 const HOST = "0.0.0.0";
@@ -33,7 +33,7 @@ store
   .putContainer(timeConInfo, false)
   .then((ts) => {
     time_series = ts;
-    return ts.put([new Date(), "Nomi", "resting"]);
+    return ts.put([new Date(), "User", "Message"]);
   })
   .then(() => {
     query = time_series.query(
