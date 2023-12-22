@@ -58,18 +58,6 @@ $ sudo dpkg -i gridd-c_client_5_3_0_amd64.deb
 
 ```
 
-Once the Griddb Node js client is installed, then we will install node version 10.16 because the griddb node js requires this version.
-
-```bash
-$ nvm install 10.16
-
-$ nvm use 10.16
-
-# Confirm we are using node version 10.x
-$ node -v
- v10.16.0
-```
-
 ## Running the chat application
 
 Everything is almost ready, The last step is to point our LD_LIBRARY to our c_client installation.
@@ -78,7 +66,7 @@ Everything is almost ready, The last step is to point our LD_LIBRARY to our c_cl
 
 # First check the path and make sure griddb client is installed in /user
 
-# Then use
+# Then export the load library, your path/version might be different. Change accordingly
 $ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/griddb_c_client-4.2-0/lib/
 
 ```
@@ -88,7 +76,7 @@ And we can now officially run JavaScript with our GridDB cluster.
 ```bash
 # Go to the application
 
-$ cd /path/to/application
+$ cd griddb-chat
 
 # Install the packages
 $ npm install
