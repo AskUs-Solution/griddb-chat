@@ -1,12 +1,15 @@
 ﻿## **How to build a Real-time Chat Application with Node.js and GridDB**
 
-This tutorial will assist you in building a real-time chat application using Node.js and GridDB. It also explores using technologies like Express and Socket.io to ensure smooth connections.![](https://drive.google.com/uc?export=view&id=1tuxRlkrA9WqaEaDBNQsL-zGkJVcU-1xW)
+
+![](https://drive.google.com/uc?export=view&id=1tuxRlkrA9WqaEaDBNQsL-zGkJVcU-1xW)
 
 ## Introduction:
 
-Real-time chat services have become essential in our internationally interconnected society due to the rapid growth of the digital realm. These apps act as technical portals, bridging time and space to provide quick and simple connections. Situated at the forefront of this creative age, they function as dynamic, interactive interfaces that mimic natural, in-person dialogues.
+In this tutorial, we're going to dive into the exciting world of real-time chat applications. Imagine being able to instantly connect with friends, family, or colleagues from anywhere in the world. That's the power of real-time chat, and today, you're going to learn how to build one from scratch!
 
-Unlike traditional channels like email or forums, real-time chat platforms guarantee fast message delivery, promoting continuous conversations. With capabilities like file transfers, multimedia sharing, and real-time collaborative document editing, their versatility extends from casual social messaging to boosting productivity in global organizations.
+We'll be using Node.js, a popular JavaScript runtime, to handle the server-side operations of our chat app. For the database, we're going to utilize GridDB, a highly efficient NoSQL database that's perfect for handling real-time data processing. Alongside these, we'll incorporate Express, a minimalist web framework for Node.js, and Socket.io, a library that enables real-time, bidirectional event-based communication.
+
+This tutorial is designed for those who have a basic understanding of JavaScript and are familiar with Node.js. Don't worry if you're not an expert; we'll guide you through each step clearly and concisely. By the end of this tutorial, you'll have a fully functioning real-time chat application, a deeper understanding of how these technologies work together, and a foundation you can use to build more complex applications in the future. Let's get started!
 
 **Understanding the Technologies**
 
@@ -59,10 +62,10 @@ The output will look like this:
 
 ![](https://drive.google.com/uc?export=view&id=1rZXcTRv8fdiwVUeepr3V7HBMb5oT2Rvz)
 
-To use the nvm 10.x, use the following command:
+To use the nvm 18.x, use the following command:
 
 ```bash
-nvm use 10.x
+nvm use 18.x
 ```
 
 Now, to install Express, use the command:
