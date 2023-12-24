@@ -11,32 +11,32 @@ We'll be using Node.js, a popular JavaScript runtime, to handle the server-side 
 
 This tutorial is designed for those who have a basic understanding of JavaScript and are familiar with Node.js. Don't worry if you're not an expert; we'll guide you through each step clearly and concisely. By the end of this tutorial, you'll have a fully functioning real-time chat application, a deeper understanding of how these technologies work together, and a foundation you can use to build more complex applications in the future. Let's get started!
 
-**Understanding the Technologies**
+## Understanding the Technologies
 
 ![](https://drive.google.com/uc?export=view&id=14eOM6_-nxub982K67PJ79kqfb13JzPKA)
 
-**NodeJS:**
+#### NodeJS:
 
 Node.js functions as a runtime environment that enables JavaScript code to operate outside the confines of a conventional web browser. Real-time application management is made easy using Node.js's non-blocking, event-driven design, which leverages the Chrome V8 JavaScript engine. Its emphasis is on efficiency and responsiveness.
 
-**GridDB:**
+#### GridDB:
 
 GridDB is particularly effective in real-time Internet of Things applications. It guarantees dependable and quick access with minimal latency and effective data management. GridDB is a great tool for efficient data management in chat apps since it is designed for real-time processing.
 
-**Express:**
+#### Express:
 
 Express is a Node.js web application framework that offers numerous features for creating mobile and web applications. It is employed to build single-page, multipage, and hybrid web applications. As an overlay on top of Node.js, Express streamlines server and route management
 
-**Socket.io:**
+#### Socket.io:
 
 A library called Socket.io is intended for real-time, event-driven web applications. It allows two-way communication between web clients and servers.
 
-**Prerequisites:**
+## Prerequisites:
 
 - It is essential to have a basic grasp of JavaScript.
 - Make sure that Node and NPM are installed on your computer.
 
-## Step-by-Step configuration:
+#### Step-by-Step configuration:
 
 ![](https://drive.google.com/uc?export=view&id=1DDO1OyxaS21K85b5WnujP2EEtFyiT6qC)
 
@@ -80,7 +80,7 @@ Now install socket.io using the command:
 npm install -save socket.io
 ```
 
-## Setting Up GridDB:
+#### Setting Up GridDB:
 
 <!-- ![](https://drive.google.com/uc?export=view&id=1_zOCAtzyIUjews2xtiFz-ipyrLV_VGU5) -->
 
@@ -142,6 +142,8 @@ gs_stat -u admin/admin
 Then, create a file (in Visual Studio Code) called server.js that Node will use to function as the server.
 
 ![](https://lh7-us.googleusercontent.com/2Bv_R8tgZoiag8qMaW6vcLmlcGKOm0vlyng4bcgLOssSJawpYGmFxUc-KR4oLeIJOsVzllanpMF4_BVVRMFtzJZo47OFRv_QlMLmzKLOFdxymoREyE6bYH4UNASfGN9-kx0zJvETXF2cjMvklzHE6nQ)
+
+
 
 **Add the following code to it:**
 
@@ -309,11 +311,39 @@ server.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
 ```
 
-**Explanation of the code:**
+### Explanation of the code:
 
-The code creates a real-time chat server using Express, Socket.io, and GridDB. It connects to GridDB to store and retrieve chat messages in a time-series container with timestamp, username, and message columns. The server records user connections, disconnections, and chat messages. The `handleChatMessage` function asynchronously stores chat messages in GridDB. The server uses Express for the web interface and Socket-io for real-time communication. The code effectively integrates these technologies for a comprehensive chat server.
+The above code creates a real-time chat server using Express, Socket.io, and GridDB. It connects to GridDB to store and retrieve chat messages in a time-series container with timestamp, username, and message columns. The server records user connections, disconnections, and chat messages. The `handleChatMessage` function asynchronously stores chat messages in GridDB. The server uses Express for the web interface and Socket-io for real-time communication. The code effectively integrates these technologies for a comprehensive chat server.
 
-Let’s create an 'index.html' file by clicking 'New File.'
+### GridDB Initialization and Configuration
+GridDB Store Initialization:
+
+```
+const factory = griddb.StoreFactory.getInstance();
+const store = factory.getStore({...});
+```
+These lines initialize the connection to the GridDB store. `StoreFactory.getInstance()` fetches an instance of the store factory, and getStore() is then used to create a store connection with configuration details such as the cluster name, notification member (server address), and credentials.
+
+#### Defining the Chat Container Schema:
+
+```var timeConInfo = new griddb.ContainerInfo({...});```
+This section defines the schema for a GridDB container named `Chat`. Containers in GridDB are similar to tables in relational databases. The schema specifies the data columns: a timestamp, a username, and a message, which are essential for a chat application. The type of the container is set to `TIME_SERIES`, indicating that the data is time-sequenced, which is apt for chat messages.
+
+#### Creating/Accessing the Chat Container and Initial Data Insertion:
+
+The `store.putContainer()` method is used to either create a new container or access an existing one based on the provided schema. The code inserts a sample record into the time series container.
+
+#### GridDB Data Handling in Chat Application
+
+**Querying Recent Messages:**
+
+The code includes a query to retrieve messages from the last six hours. This is done using `time_series.query()`, demonstrating how GridDB can efficiently handle time-based queries, a common requirement in chat applications for fetching recent messages.
+
+**Inserting Chat Messages:**
+
+The handleChatMessage function is an asynchronous function that handles the storage of chat messages into the GridDB container. Each message, along with its timestamp and the sender's username, is inserted into the `Chat` container. This function illustrates how new data is added to GridDB in real-time.
+
+Let’s create an `index.html` file by clicking `New File.`
 
 <!-- ![](https://github.com/AskUs-Solution/griddb-chat/blob/main/docs/img1.PNG) -->
 
@@ -455,13 +485,16 @@ Let’s create an 'index.html' file by clicking 'New File.'
 
 **Explanation of the code:**
 
-This code represents the client-side part of a real-time chat program. Using a <style> section to incorporate styling, the structure is conventional HTML5. An unordered list of chat messages is included in the body, along with a fixed form with an input field and a 'Send' button at the bottom for message entry. Real-time communication is made possible by the embedded JavaScript connecting to the server using the Socket.io framework. Login requires user input, and some activities, such as submitting a form, cause the server to receive Socket.io events. Additionally, the script updates the user interface dynamically by listening to different server-sent events.
+The above code represents the client-side part of a real-time chat program. Using a <style> section to incorporate styling, the structure is conventional HTML5. An unordered list of chat messages is included in the body, along with a fixed form with an input field and a 'Send' button at the bottom for message entry. Real-time communication is made possible by the embedded JavaScript connecting to the server using the Socket.io framework. Login requires user input, and some activities, such as submitting a form, cause the server to receive Socket.io events. Additionally, the script updates the user interface dynamically by listening to different server-sent events.
 
 Now, export the load library by using the command on Visual Studio Code’s terminal:
 
 ```bash
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/griddb_c_client-4.2.0/lib/
 ```
+**Output:**
+
+![](https://drive.google.com/uc?export=view&id=1bi9nYpJXNeoWJ0a9Q2_NxjuwEXXMBnYG)
 
 Then, run the application by running the following command:
 
@@ -469,14 +502,22 @@ Then, run the application by running the following command:
 node server.js
 ```
 
-**Output:**
-
-![](https://drive.google.com/uc?export=view&id=1bi9nYpJXNeoWJ0a9Q2_NxjuwEXXMBnYG)
-
 ![](https://drive.google.com/uc?export=view&id=113H12Nr5a4VM8lmzNGilwc0qqJqOtr02)
+
+Now, open the browser and type the URL `http://localhost:3000/` to launch the application as `user 1`. Then, open another browser window and type the same URL to launch the application as `user 2`.
+
+
+Now, type a message in the input field and click the `Send` button. The message will be displayed in both the browser windows.
+
+The output will look like this:
 
 ![](https://drive.google.com/uc?export=view&id=16WbXb3fB01SARTCIBSsVTgxTbG2afK3G)
 
+As you can see, the message is displayed in both the browser windows. The message is also stored in GridDB.
+
 ## Conclusion:
 
-This article explains how to create a real-time chat application using GridDB and Node.js. The main technologies include Socket.io for real-time communication, Express as the web application framework, GridDB for effective data processing, and Node.js for server-side functionality. Installation of Node.js/NPM and a basic grasp of JavaScript are prerequisites. GridDB setup, server configuration, and project start-up are all included in the systematic configuration procedure. The article concludes with instructions that are easy to follow for launching the application, showcasing how various technologies are seamlessly integrated to enable immediate communication.
+In this guide, we have walked through the steps to create a real-time chat application, combining the power of Node.js with the robust data management capabilities of GridDB. This combination of technologies, along with Express for streamlined server setup and Socket.io for seamless real-time communication, forms a dynamic platform for immediate, interactive messaging.
+
+You've seen how each component plays a crucial role: Node.js serves as the backbone, GridDB manages the chat data efficiently, Express simplifies the web server's configuration, and Socket.io ensures that messages are exchanged in real time. 
+
