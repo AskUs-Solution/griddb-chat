@@ -11,7 +11,7 @@ const io = socketio(server);
 const factory = griddb.StoreFactory.getInstance();
 const store = factory.getStore({
   notificationMember: "127.0.0.1:10001",
-  clusterName: "defaultCluster",
+  clusterName: "myCluster",
   username: "admin",
   password: "admin",
 });
@@ -27,44 +27,6 @@ var timeConInfo = new griddb.ContainerInfo({
   type: griddb.ContainerType.TIME_SERIES,
   rowKey: true,
 });
-
-let time_series;
-store
-  .putContainer(timeConInfo, false)
-  .then((ts) => {
-    time_series = ts;
-    return ts.put([new Date(), "User", "Message"]);
-  })
-  .then(() => {
-    query = time_series.query(
-      "select * where timestamp > TIMESTAMPADD(HOUR, NOW(), -6)"
-    );
-    return query.fetch();
-  })
-  .then((rowset) => {
-    while (rowset.hasNext()) {
-      var row = rowset.next();
-      console.log(
-        "Time =",
-        row[0],
-        "Username =",
-        row[1].toString(),
-        "Message =",
-        row[2]
-      );
-    }
-  })
-  .catch((err) => {
-    if (err.constructor.name == "GSException") {
-      for (var i = 0; i < err.getErrorStackSize(); i++) {
-        console.log("[", i, "]");
-        console.log(err.getErrorCode(i));
-        console.log(err.getMessage(i));
-      }
-    } else {
-      console.log(err);
-    }
-  });
 
 // Function to handle the "chat_message" event and store the message in GridDB
 async function handleChatMessage(data) {
@@ -113,6 +75,23 @@ async function handleChatMessage(data) {
   }
 }
 
+// Fetch all data
+const FetchAll = async function () {
+  const container = await store.getContainer("Chat");
+
+  const query = container.query(
+    "select * where timestamp > TIMESTAMPADD(HOUR, NOW(), -6)"
+  );
+  const rowSet = await query.fetch();
+  let res = [];
+  while (rowSet.hasNext()) {
+    const row = await rowSet.next();
+    console.log("Name:", row[1].toString(), "Message:", row[2]);
+    res.push({ username: row[1].toString(), message: row[2] });
+  }
+  return res;
+};
+
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
@@ -138,6 +117,11 @@ io.on("connection", (socket) => {
 
 app.get("/", (req, res) => {
   res.send("Hello, World");
+});
+
+app.get("/api/messages", async (req, res) => {
+  const response = await FetchAll();
+  res.send(response);
 });
 
 app.post("/api/put", async (req, res) => {

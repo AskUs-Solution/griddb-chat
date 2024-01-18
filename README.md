@@ -67,7 +67,7 @@ Everything is almost ready, The last step is to point our LD_LIBRARY to our c_cl
 # First check the path and make sure griddb client is installed in /user
 
 # Then export the load library, your path/version might be different. Change accordingly
-$ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/griddb_c_client-4.2-0/lib/
+$ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/griddb_c_client-5.3-0/lib/
 
 ```
 
