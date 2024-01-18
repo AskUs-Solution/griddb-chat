@@ -48,31 +48,6 @@ $ gs_stat -u admin/admin
 
 Our Griddb is all set up and running, now it's time to set up our Node JS environment to run the chat application.
 
-We need to install Griddb c_client in order to run Griddb with Node Js, head over to [Griddb_c_client releases](https://github.com/griddb/c_client/releases) page and download the package that fits best to your Operating System. Since we are setting up our environment on Ubuntu 20.04 LTS so we will grab .deb file.
-
-#### Install griddb_c_client
-
-```bash
-# The latest version is 5.3.0 at the time of writing this
-$ sudo dpkg -i gridd-c_client_5_3_0_amd64.deb
-
-```
-
-## Running the chat application
-
-Everything is almost ready, The last step is to point our LD_LIBRARY to our c_client installation.
-
-```bash
-
-# First check the path and make sure griddb client is installed in /user
-
-# Then export the load library, your path/version might be different. Change accordingly
-$ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/griddb_c_client-5.3-0/lib/
-
-```
-
-And we can now officially run JavaScript with our GridDB cluster.
-
 ```bash
 # Go to the application
 
