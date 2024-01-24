@@ -117,16 +117,13 @@ Stop the server by using:
 sudo systemctl stop gridstore
 ```
 
-**Output:**
-
-![](https://drive.google.com/uc?export=view&id=104hUUjezRzV8d7KEcjyzxir_dVT59ijT)
-
 Change the default password of admin by using the command:
 
 ```bash
-gs_passwd admin
 export GS_HOME=/var/lib/gridstore/
 export GS_LOG=/var/lib/gridstore/log/
+gs_passwd admin
+
 ```
 
 Due to the absence of an init script in the GridDB Community Edition, GridDB must be started manually. Establish the service's connection to other nodes after it has been started.
@@ -144,8 +141,7 @@ gs_stat -u admin/admin
 ```
 
 **Output:**
-
-![](https://drive.google.com/uc?export=view&id=1bdCCLt1zSAkTd1vaWRFNBWS5J_irQlUW)
+![](https://drive.google.com/uc?export=view&id=1DcAeQiv3yzyTCv9NjTKkpQlHXf7uWUaP)
 
 <!-- https://drive.google.com/file/d/1bdCCLt1zSAkTd1vaWRFNBWS5J_irQlUW/view?usp=sharing -->
 
